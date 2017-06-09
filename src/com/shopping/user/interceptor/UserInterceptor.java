@@ -5,9 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.shopping.base.constant.Conf;
-import com.shopping.base.entity.User;
-
 /**
  * 登录拦截器
 
@@ -25,11 +22,11 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		User user = (User) request.getSession().getAttribute(Conf.SESSION_USER);
+	/*	User user = (User) request.getSession().getAttribute(Conf.SESSION_USER);
 		if (user == null) {
 			request.getRequestDispatcher(redirect).forward(request, response);
 			return false;
-		}
+		}*/
 		return true;
 	}
 

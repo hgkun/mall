@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd              
+                         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- 下面标签内建的就是 FormattingConversionServiceFactoryBean 
+	所以 Spring MVC 对处理方法的入参绑定就支持注解驱动的功能 -->
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.shopping.**.web.controller" />
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory 静态资源的处理 提供 rest 
+		风格的URL 提供可能 cache-period 静态资源在客户浏览器的缓存时间 -->
+	<mvc:resources mapping="/resources/**" location="/resources/"
+		cache-period="31536000" />
+	<!-- - Message source for this context, loaded from localized "messages_xx" 
+		files. - Files are stored inside src/main/resources -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages/messages" />
+	</bean>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- CommonsMultipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1024000000"></property>
+	</bean>
+	
+ 	<mvc:interceptors>
+ 		<mvc:interceptor>
+			<mvc:mapping path="/user/**" />
+			<bean class="com.shopping.user.interceptor.UserInterceptor">
+				<property name="redirect" value="/member/login.do"/>
+			</bean>
+		</mvc:interceptor> 
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean class="com.shopping.user.interceptor.AdminInterceptor">
+				<property name="redirect" value="/adminLogin.do"/>
+			</bean>
+		</mvc:interceptor> 
+ 	
+ 	</mvc:interceptors>
+
+
+<!-- 	  <mvc:interceptor>
+			<mvc:mapping path="/user/**" />
+			<bean class="com.shopping.user.interceptor.UserInterceptor">
+				<property name="redirect" value="/member/index.do"/>
+			</bean>
+		</mvc:interceptor>  -->
+<!-- 			 <mvc:interceptor>
+			<mvc:mapping path="/user/**" />
+			<bean class="com.shopping.user.interceptor.UserInterceptor">
+				<property name="redirect" value="/member/login.do"/>
+			</bean>
+		</mvc:interceptor>   -->
+		
+<!-- 		<mvc:interceptor>
+			<mvc:mapping path="/user/**" />
+			<bean class="com.shopping.user.interceptor.AccessInterceptor">
+				<property name="redirect" value="/member/nopermission.do"/>
+			</bean>
+		</mvc:interceptor> -->
+		
+<!-- 		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.shopping.base.interceptor.AuthInterceptor">
+			</bean>
+		</mvc:interceptor> -->
+		
+<!-- 	</mvc:interceptors> -->
+	
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.shopping.base.interceptors.AuthInterceptor">
+				<property name="sessionPatterns">
+					<list>
+						<value>financial/*</value>
+						<value>national/*</value>
+						<value>user/*</value>
+					</list>					
+				</property>
+				<property name="excludePatterns">
+					<list>
+						<value>auth.do</value>
+					</list>					
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+
+	<!-- Spring MVC HttpMessageConverter<T> 自定义之后则覆盖默认的值 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
+		<property name="messageConverters" ref="messageConverters" /> </bean> 默认配置以下四个 
+		<util:list id="messageConverters"> <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.StringHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" 
+		/> <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" 
+		/> </util:list> -->
+
+	<!-- <bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller"> 
+		<property name="streamDriver"> <bean class="com.thoughtworks.xstream.io.xml.StaxDriver" 
+		/> </property> </bean> <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"> 
+		</bean> -->
+
+	<!-- <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" 
+		p:order="10" /> <bean id="blogListExcel" class="cn.tramp.iblog.docview.BlogListExcelView" 
+		/> <bean id="blogListPdf" class="cn.tramp.iblog.docview.BlogListPdfView" 
+		/> <bean id="userListExcel" class="cn.tramp.iblog.docview.UserListExcelView" 
+		/> <bean id="userListPdf" class="cn.tramp.iblog.docview.UserListPdfView" 
+		/> -->
+</beans>

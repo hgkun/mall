@@ -21,18 +21,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import com.shopping.base.entity.User;
 
 
 /**
@@ -55,20 +50,12 @@ public class BaseEntity implements Serializable {
 	 */
 	private Date createTime = new Date();
 	
-	/**
-	 * 创建人
-	 */
-	private User createBy;
 	
 	/**
 	 * 更改时间
 	 */
 	private Date updateTime;
 	
-	/**
-	 * 更改人
-	 */
-	private User updateBy;
 	// ------------------------------- mysql -------------------------------- //
 	/**
 	 * @return the id
@@ -117,14 +104,6 @@ public class BaseEntity implements Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="f_create_by")
-	public User getCreateBy() {
-		return createBy;
-	}
-	public void setCreateBy(User createBy) {
-		this.createBy = createBy;
-	}
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="f_update_time")
 	public Date getUpdateTime() {
@@ -132,14 +111,6 @@ public class BaseEntity implements Serializable {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="f_update_by")
-	public User getUpdateBy() {
-		return updateBy;
-	}
-	public void setUpdateBy(User updateBy) {
-		this.updateBy = updateBy;
 	}
 	
 	

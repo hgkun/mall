@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -15,22 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
-import com.shopping.base.constant.Conf;
-import com.shopping.base.entity.User;
 import com.shopping.base.enums.OrderStatus;
-import com.shopping.base.service.AddressService;
-import com.shopping.base.service.AdminService;
-import com.shopping.base.service.DiscountService;
-import com.shopping.base.service.HeaderImgService;
-import com.shopping.base.service.ItemService;
-import com.shopping.base.service.ItemTypeService;
-import com.shopping.base.service.MessageService;
-import com.shopping.base.service.OrderService;
-import com.shopping.base.service.ReviewService;
-import com.shopping.base.service.ShopCartService;
-import com.shopping.base.service.UserService;
-import com.shopping.base.service.impl.AdministrationServiceImpl;
-//import com.shopping.base.service.ScheduleJobService;
 
 public abstract class BaseController {
 	
@@ -40,30 +23,6 @@ public abstract class BaseController {
 
 	protected Logger LOG = LoggerFactory.getLogger(getClass());
 	
-	@Resource
-	protected HeaderImgService headerImgService;
-	@Resource
-	protected UserService userService;
-	@Resource
-	protected DiscountService discountService;
-	@Resource
-	protected AddressService addressService ;
-	@Resource
-	protected ItemService itemService;
-	@Resource
-	protected ItemTypeService itemTypeService;
-	@Resource
-	protected OrderService orderService;
-	@Resource
-	protected ReviewService reviewService;
-	@Resource
-	protected AdminService adminService;
-	@Resource
-	protected MessageService messageService;
-	@Resource
-	protected ShopCartService shopCartService;
-	@Resource
-	protected AdministrationServiceImpl administrationService;
 	
 
 
@@ -79,12 +38,12 @@ public abstract class BaseController {
 
 	
 	
-	public User getSessionUser(HttpServletRequest request) {
+/*	public User getSessionUser(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if (session == null)
 			return null;
 		return (User) session.getAttribute(Conf.SESSION_USER);
-	}
+	}*/
 
 	protected String getIpAddr(HttpServletRequest request) {
 		String ip = request.getHeader("x-forwarded-for");

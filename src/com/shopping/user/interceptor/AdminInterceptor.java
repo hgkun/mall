@@ -3,12 +3,10 @@ package com.shopping.user.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.shopping.base.constant.Conf;
 import com.shopping.base.entity.Admin;
-import com.shopping.base.entity.User;
 
 /**
  * 登录拦截器
