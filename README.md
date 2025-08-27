@@ -1,2 +1,3 @@
-Business Communication Essentials Fundamental Skills for the Mobile-Digital-Social Workplace plus Pearson MyLab Business Communication with Pearson eText, Global Edition 8th Edition by Pearson
-https://ebook345.com/view/business-communication-essentials-fundamental-skills-for-the-mobile-digital-social-workplace-plus-pearson-mylab-business-communication-with-pearson-etext-global-edition-8th-edition
+[Business Communication Essentials Fundamental Skills for the Mobile-Digital-Social Workplace plus Pearson MyLab Business Communication with Pearson eText, Global Edition 8th Edition by Pearson](https://ebook345.com/view/business-communication-essentials-fundamental-skills-for-the-mobile-digital-social-workplace-plus-pearson-mylab-business-communication-with-pearson-etext-global-edition-8th-edition)
+
+
